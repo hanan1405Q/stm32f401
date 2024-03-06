@@ -1,7 +1,6 @@
 
 /*****************************      Includes      ********************************/
-#include "BIT_MATH.h"
-#include "RCC_interface.h"
+#include "RCC.h"
 
 /********   Private   Register OF RCC  ************/
 
@@ -36,15 +35,26 @@
 #define   RCC_SLK_PLL        0x00000010
 #define   RCC_SLK_CLEAR      0xFFFFFFFC
 
+/******* Bus ID **********/
+#define RCC_BUS_ID_AHB1  0
+#define RCC_BUS_ID_AHB2  1
+#define RCC_BUS_ID_APB1  2
+#define RCC_BUS_ID_APB2  3
+#define RCC_BUS_GLAGE_CLEAR  0xfCffffff
+#define RCC_24BIT_OFFSET    24
 
 /**     PLL Configuration Masks       **/
-
 #define RCC_PLLM_CLEAR       0xffffffc0
 #define RCC_PLLN_CLEAR       0xffff003f
 #define RCC_PLLP_CLEAR       0xfff0ffff
 #define RCC_PLLQ_CLEAR       0xf0ffffff
 
 
+
+
+
+
+/*   Implementation  */
 void RCC_EnableSystemClock(u32 copy_u32SysClock)
 {
 	RCC_CR |= copy_u32SysClock;
@@ -134,24 +144,28 @@ RCC_enuErrorState_t RCC_PLLConfig(u32 Copy_u32PLLM,u32 Copy_u32PLLN,u32 Copy_u32
 
 
 
-void RCC_EnablePeripheralClock(u8 Copy_u8BusId, u32 Copy_u32PerId)
+void RCC_EnablePeripheralClock(u32 Copy_u32PerId)
 {
-		switch (Copy_u8BusId)
+	u8 LocFlage = (Copy_u32PerId && ~(RCC_BUS_GLAGE_CLEAR))>>RCC_24BIT_OFFSET;
+	
+		
+		switch (LocFlage)
 		{
-			case RCC_BUS_ID_AHB1  : RCC_AHB1ENR|=Copy_u32PerId ;   break;
-			case RCC_BUS_ID_AHB2  : RCC_AHB2ENR|=Copy_u32PerId ;   break;
-			case RCC_BUS_ID_APB1  : RCC_APB1ENR|=Copy_u32PerId ;   break;
-			case RCC_BUS_ID_APB2  : RCC_APB2ENR|=Copy_u32PerId ;   break;
+			case RCC_BUS_ID_AHB1  : RCC_AHB1ENR|=(Copy_u32PerId & RCC_BUS_GLAGE_CLEAR)  ;   break;
+			case RCC_BUS_ID_AHB2  : RCC_AHB2ENR|=(Copy_u32PerId & RCC_BUS_GLAGE_CLEAR)  ;   break;
+			case RCC_BUS_ID_APB1  : RCC_APB1ENR|=(Copy_u32PerId & RCC_BUS_GLAGE_CLEAR)  ;   break;
+			case RCC_BUS_ID_APB2  : RCC_APB2ENR|=(Copy_u32PerId & RCC_BUS_GLAGE_CLEAR)  ;   break;
 		}
 }
 
-void RCC_DisablePeripheralClock(u8 Copy_u8BusId, u32 Copy_u32PerId)
+void RCC_DisablePeripheralClock(u32 Copy_u32PerId)
 {
-		switch (Copy_u8BusId)
+		u8 LocFlage = (Copy_u32PerId && ~(RCC_BUS_GLAGE_CLEAR))>>RCC_24BIT_OFFSET;
+		switch (LocFlage)
 		{
-			case RCC_BUS_ID_AHB1  : RCC_AHB1ENR &= ~(Copy_u32PerId);   break;
-			case RCC_BUS_ID_AHB2  : RCC_AHB2ENR &= ~(Copy_u32PerId);   break;
-			case RCC_BUS_ID_APB1  : RCC_APB1ENR &= ~(Copy_u32PerId);   break;
-			case RCC_BUS_ID_APB2  : RCC_APB2ENR &= ~(Copy_u32PerId);   break;
+			case RCC_BUS_ID_AHB1  : RCC_AHB1ENR &= ~(Copy_u32PerId & RCC_BUS_GLAGE_CLEAR);   break;
+			case RCC_BUS_ID_AHB2  : RCC_AHB2ENR &= ~(Copy_u32PerId & RCC_BUS_GLAGE_CLEAR);   break;
+			case RCC_BUS_ID_APB1  : RCC_APB1ENR &= ~(Copy_u32PerId & RCC_BUS_GLAGE_CLEAR);   break;
+			case RCC_BUS_ID_APB2  : RCC_APB2ENR &= ~(Copy_u32PerId & RCC_BUS_GLAGE_CLEAR);   break;
 		}
 }

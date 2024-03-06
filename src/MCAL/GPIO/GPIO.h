@@ -1,3 +1,7 @@
+#ifndef _GPIO_H 
+#define _GPIO_H 
+
+
 #include "STD_TYPE.h"
 
 /****  GPIO  PORT Macros  *****/
@@ -77,3 +81,6 @@ typedef struct
 void GPIO_Init(GPIO_PinConfig_t * PinCfg);
 void GPIO_SetPinValue(void* port ,u32 pin , u32 value);
 void GPIO_GetPinValue(void* port ,u32 pin , u8* value);
+
+
+#endif

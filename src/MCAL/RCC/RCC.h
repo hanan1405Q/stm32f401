@@ -9,57 +9,52 @@
 #define  PLLI2S  1
 
 
-/* Bus Id */
-#define RCC_BUS_ID_AHB1  0
-#define RCC_BUS_ID_AHB2  1
-#define RCC_BUS_ID_APB1  2
-#define RCC_BUS_ID_APB2  3
 
 /*******			Peripheral ID				********/
 
 /*01- Peripheral on AHB1_Bus*/
-#define GPIOA_ID   0x1
-#define GPIOB_ID   0x2
-#define GPIOC_ID   0x4
-#define GPIOD_ID   0x8
-#define GPIOE_ID   0x10
-#define GPIOH_ID   0x80
-#define CRC_ID     0x1000
-#define DMA1_ID    0x200000
-#define DMA2_ID    0x400000
+#define GPIOA_ID   0x00000001
+#define GPIOB_ID   0x00000002
+#define GPIOC_ID   0x00000004
+#define GPIOD_ID   0x00000008
+#define GPIOE_ID   0x00000010
+#define GPIOH_ID   0x00000080
+#define CRC_ID     0x00001000
+#define DMA1_ID    0x00200000
+#define DMA2_ID    0x00400000
 
 /*02- Peripheral on AHB2_Bus*/
 
-#define OTGFS_ID   0x80
+#define OTGFS_ID   0x01000080
 
 /*03- Peripheral on APB1_Bus*/
 
-#define TIM2_ID      0x1
-#define TIM3_ID      0x2
-#define TIM4_ID      0x4
-#define TIM5_ID      0x8
-#define WWDG_ID      0x800
-#define SPI2_ID      0x4000
-#define SPI3_ID      0x8000
-#define USART2_ID    0x20000
-#define I2C1_ID      0x200000
-#define I2C2_ID      0x400000
-#define I2C3_ID      0x800000
-#define PWR_ID       0x10000000
+#define TIM2_ID      0x02000001
+#define TIM3_ID      0x02000002
+#define TIM4_ID      0x02000004
+#define TIM5_ID      0x02000008
+#define WWDG_ID      0x02000800
+#define SPI2_ID      0x02004000
+#define SPI3_ID      0x02008000
+#define USART2_ID    0x02020000
+#define I2C1_ID      0x02200000
+#define I2C2_ID      0x02400000
+#define I2C3_ID      0x02800000
+#define PWR_ID       0x12000000
 
 /*04- Peripheral on APB2_Bus*/
 
-#define TIM1_ID      0x1
-#define USART1_ID    0x10
-#define USART6_ID    0x20
-#define ADC1_ID      0x100
-#define SDIO_ID      0x800
-#define SPI1_ID      0x1000
-#define SPI4_ID      0x2000
-#define SYSCFG_ID    0x4000
-#define TIM9_ID      0x10000
-#define TIM10_ID     0x20000
-#define TIM11_ID     0x40000
+#define TIM1_ID      0x03000001
+#define USART1_ID    0x03000010
+#define USART6_ID    0x03000020
+#define ADC1_ID      0x03000100
+#define SDIO_ID      0x03000800
+#define SPI1_ID      0x03001000
+#define SPI4_ID      0x03002000
+#define SYSCFG_ID    0x00004000
+#define TIM9_ID      0x00010000
+#define TIM10_ID     0x00020000
+#define TIM11_ID     0x00040000
 
 /***********************0x10000000 END of Peripheral ID      *********************************/
 
@@ -110,8 +105,8 @@ void RCC_EnableSystemClock(u32   Copy_u32SysClock);
 void RCC_DisableSystemClock(u32  Copy_u32SysClock);
 RCC_enuErrorState_t RCC_SelectClockSystem(u32   Copy_u32SysClock);
 RCC_enuErrorState_t RCC_PLLConfig(u32 Copy_u32PLL_M,u32 Copy_u32PLL_N,u32 Copy_u32PLL_P,u32 Copy_u32ClkSourc);
-void RCC_EnablePeripheralClock(u8 Copy_BusId, u32 Copy_u32PerId);
-void RCC_DisablePeripheralClock(u8 Copy_BusId, u32 Copy_u32PerId);
+void RCC_EnablePeripheralClock(u32 Copy_u32PerId);
+void RCC_DisablePeripheralClock(u32 Copy_u32PerId);
 
 
 #endif
