@@ -4,8 +4,10 @@
 
 typedef enum
 {
-    AlarmLed,
-    GreenLed,
+    Led1,
+    Led2,
+    Led3,
+
    _Led_Num  //Represent Num Of LEDS
 }Leds_t;
 

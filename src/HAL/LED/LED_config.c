@@ -4,7 +4,7 @@
 
 LED_LedConfig_t Leds [_Led_Num]=
 {
-   [AlarmLed]={
+   [Led1]={
 
         .Port=GPIO_PORTA,
         .Pin=GPIO_PIN0,
@@ -13,14 +13,25 @@ LED_LedConfig_t Leds [_Led_Num]=
 
       },
 
-   [GreenLed]={
+   [Led2]={
 
         .Port=GPIO_PORTA,
         .Pin=GPIO_PIN1,
         .Connect=LED_CONNECT_FR,
         .State=LED_STATE_OFF
 
+      },
+
+
+      [Led3]={
+
+        .Port=GPIO_PORTA,
+        .Pin=GPIO_PIN2,
+        .Connect=LED_CONNECT_FR,
+        .State=LED_STATE_OFF
+
       }
+
 
 
 };
