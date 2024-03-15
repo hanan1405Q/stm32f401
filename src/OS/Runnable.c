@@ -6,25 +6,25 @@
 Runnable_t Runnabls [_Max_Num]=
 {
   [Runnable_1]={
-                 .Periodicty=10,
+                 .Periodicty=100,
                  .Callback=fun1,
-                 .FirstDelay=1,
+                 .FirstDelay=0,
 
               },
 
    
-  [Runnable_1]={
+  [Runnable_2]={
                  .Periodicty=100,
                  .Callback=fun2,
-                 .FirstDelay=2,
+                 .FirstDelay=0,
 
               },
 
     
-  [Runnable_1]={
-                 .Periodicty=500,
+  [Runnable_3]={
+                 .Periodicty=100,
                  .Callback=fun3,
-                 .FirstDelay=3,
+                 .FirstDelay=0,
 
               },
 };

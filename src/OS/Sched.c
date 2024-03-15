@@ -24,6 +24,8 @@
 
 extern Runnable_t Runnabls [_Max_Num];
 
+volatile static u32 PendingTicks=0;
+
 
 /********************************************************************************************************/
 /*****************************************Static Functions Prototype*************************************/
@@ -50,6 +52,12 @@ static  void Sched (void)
 }
 
 
+void TickCB (void)
+{
+   PendingTicks++;
+}
+
+
 /********************************************************************************************************/
 /*********************************************APIs Implementation****************************************/
 /********************************************************************************************************/
@@ -61,5 +69,15 @@ void Sched_Init(void)
 
 void Sched_Start(void)
 {
-    STK_SetTimePeriodic_ms(Tick,Sched);
+    STK_SetTimePeriodic_ms(Tick,TickCB);
+    while (1)
+    {
+       if(PendingTicks)
+        {
+          PendingTicks--;
+          Sched();
+        }
+    }
+    
+    
 }
