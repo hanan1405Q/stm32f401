@@ -8,7 +8,7 @@
 
 void fun (void);
 
-int app (void)
+int App (void)
 {
 
   RCC_EnablePeripheralClock(GPIOA_ID);
@@ -16,7 +16,9 @@ int app (void)
   LED_Init();
   STK_Init();
   
-   /*RCC_EnablePeripheralClock(GPIOB_ID);
+   /*
+        // Test GPIO and LED Driver 
+   RCC_EnablePeripheralClock(GPIOB_ID);
    RCC_EnablePeripheralClock(GPIOC_ID);
 
    GPIO_PinConfig_t pin ={
@@ -30,7 +32,10 @@ int app (void)
    GPIO_SetPinValue(GPIO_PORTC, GPIO_PIN13,GPIO_HIGH);
    */
       
-   /*
+
+ /*
+   // Test NVIC  Behavior:
+
    NVIC_EnableIRQ(EXTI0);
    NVIC_EnableIRQ(EXTI1);
    NVIC_SetGroupSubBits(GROUP_2BIT_SUB_2BIT);
@@ -41,16 +46,22 @@ int app (void)
    NVIC_SetPendingIRQ(EXTI0);
    
    
-   LED_SetState(GreenLed,LED_STATE_OFF);
-   LED_SetState(AlarmLed,LED_STATE_OFF);
-   */
+   LED_SetState(YellowLed,LED_STATE_OFF);
+   
+ */
 
   
+  
+      //Test SysTick
 
-    STK_SetTimePeriodic_ms(20, fun);
-    //LED_SetState(Led2,LED_STATE_ON);
-    LED_SetState(Led2,LED_STATE_OFF);
+    STK_SetTimePeriodic_ms(5000, fun);
 
+   
+    // LED_SetState(YellowLed,LED_STATE_ON);
+     //LED_SetState(RedLed,LED_STATE_OFF);
+
+ 
+    
     while(1)
     {
         
@@ -66,12 +77,12 @@ void fun (void)
     static u8  Local_Flag=0;
     if(Local_Flag==0)
     {
-        LED_SetState(Led1,LED_STATE_ON);
+        LED_SetState(GreenLed,LED_STATE_ON);
         Local_Flag=1;
     }
     else if(Local_Flag==1)
     {
-        LED_SetState(Led1,LED_STATE_OFF);
+        LED_SetState(GreenLed,LED_STATE_OFF);
         Local_Flag=0;
     }
 
@@ -91,7 +102,7 @@ void  EXTI0_IRQHandler (void)
 void  EXTI1_IRQHandler (void)
 {
    NVIC_ClearPendingIRQ(EXTI1);
-   //LED_SetState(GreenLed,LED_STATE_OFF);
-    LED_SetState(AlarmLed,LED_STATE_ON);
+   LED_SetState(RedLed,LED_STATE_ON);
 }
+
 */

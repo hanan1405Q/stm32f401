@@ -4,12 +4,13 @@
 void fun1 (void);
 void fun2 (void);
 void fun3 (void);
+void Trafic_APP(void);
 
 typedef enum
 {
     Runnable_1,
-    Runnable_2,
-    Runnable_3,
+    //Runnable_2,
+    //Runnable_3,
     _Max_Num
 
 }enum_Name_t;

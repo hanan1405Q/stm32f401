@@ -6,13 +6,13 @@
 Runnable_t Runnabls [_Max_Num]=
 {
   [Runnable_1]={
-                 .Periodicty=100,
-                 .Callback=fun1,
+                 .Periodicty=1000,
+                 .Callback=Trafic_APP,
                  .FirstDelay=0,
 
               },
 
-   
+    /*
   [Runnable_2]={
                  .Periodicty=100,
                  .Callback=fun2,
@@ -27,4 +27,6 @@ Runnable_t Runnabls [_Max_Num]=
                  .FirstDelay=0,
 
               },
+
+      */
 };

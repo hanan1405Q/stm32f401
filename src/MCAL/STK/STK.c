@@ -90,7 +90,7 @@ void STK_SetTimeSingle_ms(u32 Copy_u32Time , void (*Copy_Ptr) (void))
    Callback=Copy_Ptr;
 
    /*Mape FromTime to Ticks Based on SystemClock (1M)*/
-    u32 Local_Ticks= (Copy_u32Time*FACTOR_1000*STK_FRQ)-1;;
+    u32 Local_Ticks= (Copy_u32Time*FACTOR_1000*STK_FRQ)-1;
 
     /* Set Tick Count in Load Reg*/
     STK->STK_LOAD=Local_Ticks;
@@ -107,7 +107,7 @@ void STK_SetTimePeriodic_ms(u32 Copy_u32Time ,void (*Copy_Ptr) (void))
    Callback=Copy_Ptr;
 
    /*Mabe FromTime to Ticks Based on SystemClock (1M)*/
-   u32 Local_Ticks=(Copy_u32Time*FACTOR_1000*STK_FRQ)-1;;
+   u32 Local_Ticks=(Copy_u32Time*FACTOR_1000*STK_FRQ)-1;
 
     /* Set Tick Count in Load Reg*/
     STK->STK_LOAD=Local_Ticks;

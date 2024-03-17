@@ -22,7 +22,7 @@ typedef struct
 {
     u32 Periodicty;
     Callback_t Callback;
-    u8  FirstDelay;
+    u32 FirstDelay;
     
 }Runnable_t;
 

@@ -4,7 +4,7 @@
 
 LED_LedConfig_t Leds [_Led_Num]=
 {
-   [Led1]={
+   [0]={
 
         .Port=GPIO_PORTA,
         .Pin=GPIO_PIN0,
@@ -13,7 +13,7 @@ LED_LedConfig_t Leds [_Led_Num]=
 
       },
 
-   [Led2]={
+   [1]={
 
         .Port=GPIO_PORTA,
         .Pin=GPIO_PIN1,
@@ -23,7 +23,7 @@ LED_LedConfig_t Leds [_Led_Num]=
       },
 
 
-      [Led3]={
+      [2]={
 
         .Port=GPIO_PORTA,
         .Pin=GPIO_PIN2,

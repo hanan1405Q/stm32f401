@@ -12,12 +12,12 @@
 */
 #define FRQ_MHZ               16
 
-#define STK_CLK  AHB
+#define STK_CLK  AHB_OVER_8
 /*
    u can Choose one of this options
 */ 
-#define  AHB                0x00000000        
-#define  AHB_OVER_8         0x00000004
+#define   AHB_OVER_8               0x00000000        
+#define    AHB                     0x00000004
 
 
 
