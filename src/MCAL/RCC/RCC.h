@@ -5,8 +5,8 @@
 #include "STD_TYPE.h"
 
 /* PLL Mode */
-#define  PLL  	 0
-#define  PLLI2S  1
+//#define  PLL  	 0x0
+//#define  PLLI2S  0x1
 
 
 

@@ -1,16 +1,23 @@
 
 #include "MCAL/RCC/RCC.h"
 #include "HAL/LED/LED.h"
+#include "HAL/SW/SW.h"
 #include "OS/Sched.h"
+
 
 int main (void)
 {
    
     RCC_EnablePeripheralClock(GPIOA_ID);
+    RCC_EnablePeripheralClock(GPIOB_ID);
 
     LED_Init();
+    SW_Init();
+
     Sched_Init();
     Sched_Start();
+  
+    
    
    return 0;
 
