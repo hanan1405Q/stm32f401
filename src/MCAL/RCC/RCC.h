@@ -51,10 +51,10 @@
 #define SDIO_ID      0x03000800
 #define SPI1_ID      0x03001000
 #define SPI4_ID      0x03002000
-#define SYSCFG_ID    0x00004000
-#define TIM9_ID      0x00010000
-#define TIM10_ID     0x00020000
-#define TIM11_ID     0x00040000
+#define SYSCFG_ID    0x03004000
+#define TIM9_ID      0x03010000
+#define TIM10_ID     0x03020000
+#define TIM11_ID     0x03040000
 
 /***********************0x10000000 END of Peripheral ID      *********************************/
 

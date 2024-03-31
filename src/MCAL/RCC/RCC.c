@@ -146,7 +146,7 @@ RCC_enuErrorState_t RCC_PLLConfig(u32 Copy_u32PLLM,u32 Copy_u32PLLN,u32 Copy_u32
 
 void RCC_EnablePeripheralClock(u32 Copy_u32PerId)
 {
-	u8 LocFlage = (Copy_u32PerId && ~(RCC_BUS_GLAGE_CLEAR))>>RCC_24BIT_OFFSET;
+	u8 LocFlage = (Copy_u32PerId & ~(RCC_BUS_GLAGE_CLEAR))>>RCC_24BIT_OFFSET;
 	
 		
 		switch (LocFlage)
