@@ -6,7 +6,7 @@
 
 /****  GPIO  PORT Macros  *****/
 #define GPIO_PORTA  (void *) 0x40020000
-#define GPIO_PORTB  (void *) 0x40020400
+#define GPIO_PORTB   (void *) 0x40020400
 #define GPIO_PORTC  (void *) 0x40020800
 #define GPIO_PORTD  (void *) 0x40020C00
 #define GPIO_PORTE  (void *) 0x40021000
@@ -59,6 +59,25 @@
 #define GPIO_MODE_AF_OD_PD     0x16
 
 
+/*** The Alternative Function Mode ***/
+
+#define AF0  0x00
+#define AF1  0x01
+#define AF2  0x02
+#define AF3  0x03
+#define AF4  0x04
+#define AF5  0x05
+#define AF6  0x06
+#define AF7  0x07
+#define AF8  0x08
+#define AF9  0x09
+#define AF10 0x0A
+#define AF11 0x0B
+#define AF12 0x0C
+#define AF13 0x0D
+#define AF14 0x0E
+#define AF15 0x04
+
 /***   GPIO State  Macro ***/
 #define GPIO_LOW       0x00
 #define GPIO_HIGH      0x01
@@ -82,5 +101,6 @@ void GPIO_Init(GPIO_PinConfig_t * PinCfg);
 void GPIO_SetPinValue(void* port ,u32 pin , u32 value);
 void GPIO_GetPinValue(void* port ,u32 pin , u8* value);
 
+void GPIO_ConfAltrFun(void* port ,u32 pin ,u32 func);
 
 #endif

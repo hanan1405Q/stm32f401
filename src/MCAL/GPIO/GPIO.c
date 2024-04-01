@@ -4,10 +4,13 @@
 #define GPIO_MODE_MASK     0x00000003  /* This Mask is used to extract bits of MODER in the Mode attribute */
 #define GPIO_OTYPE_MASK   0x00000010  /* This Mask is used to extract bits of  OTYPER in the Mode attribute */
 #define GPIO_PUPD_MASK    0x0000000C  /* This Mask is used to extract bits of  PUPDR in the Mode attribute */
+#define GPIO_CLEAR_AF_MASK  0x0000000F /*this mask used to clear and configure the alternative function */
+
 
 #define GPIO_2BIT_OFFSET   0x02
 #define GPIO_3BIT_OFFSET   0x03
 #define GPIO_16BIT_OFFSET  0x10
+#define GPIO_4BIT_OFFSET   0x04
 
 typedef struct
 {
@@ -68,4 +71,34 @@ void GPIO_SetPinValue(void* Port ,u32 PinNum , u32 value)
 void GPIO_GetPinValue(void* Port ,u32 PinNum , u8* PinValue)
 {
    *PinValue=(((GPIO_RegDef*)Port)->IDR >> PinNum)&1;
+}
+
+
+void GPIO_ConfAltrFun(void* port ,u32 pin ,u32 func)
+{
+   u32 LocReg;
+
+   if(pin<8)
+   {
+      LocReg=((GPIO_RegDef*)port)->AFRL;
+
+     /*Clear the correspend 4bits of the  selected Pin*/
+     LocReg &=  ~(GPIO_CLEAR_AF_MASK<<(pin*GPIO_4BIT_OFFSET));
+     /*Set the slected alternative function to the selected pin*/
+     LocReg |=   func<<(pin*GPIO_4BIT_OFFSET);
+     ((GPIO_RegDef*)port)->AFRL=LocReg;
+
+   }
+
+   else 
+   {
+      u32 PinNum = pin-8;
+      LocReg=((GPIO_RegDef*)port)->AFRH;
+
+     /*Clear the correspend 4bits of the  selected Pin*/
+     LocReg &=  ~(GPIO_CLEAR_AF_MASK<<(PinNum*GPIO_4BIT_OFFSET));
+     /*Set the slected alternative function to the selected pin*/
+     LocReg |=   func<<(PinNum*GPIO_4BIT_OFFSET);
+     ((GPIO_RegDef*)port)->AFRH=LocReg;
+   }
 }
