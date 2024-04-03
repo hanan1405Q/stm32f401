@@ -25,6 +25,11 @@ typedef enum
   Off_State
 }LCD_State_t;
 
+typedef enum
+{
+   Ready,
+   Busy
+}Req_State_t;
 
 typedef struct LCD
 {
@@ -47,7 +52,10 @@ typedef enum {
 
 void LCD_Init(void);
 void LCD_WriteString(char* Copy_ptrString, u8 Copy_u8Length);
+void LCD_WriteNumber(s16 Copy_s16Number);
+void LCD_GOTO_XY(u8 Copy_u8X,u8 Copy_u8Y);
 void LCD_GetState(u8* Copy_addState);
+void LCD_GetReqState(u8* Copy_addReqState);
 void LCD_ClearScreen(void);
 
 
