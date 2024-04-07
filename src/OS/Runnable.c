@@ -14,19 +14,27 @@ Runnable_t Runnabls [_Max_Num]=
 
     
   [Runnable_2]={
-                 .Periodicty=50,
-                 .Callback=Switch_APP,
-                 .FirstDelay=0,
-
-              },
-
-   /*
-  [Runnable_3]={
                  .Periodicty=100,
-                 .Callback=fun3,
+                 .Callback=Switch_APP,
+                 .FirstDelay=1,
+
+  
+              },
+
+/**/
+  [Runnable_3]={
+                 .Periodicty=2,
+                 .Callback=LCD_Task,
                  .FirstDelay=0,
 
               },
 
-    */
+    [Runnable_4]={
+                 .Periodicty=100,
+                 .Callback=LCD_App,
+                 .FirstDelay=1,
+
+              },
+/**/
+    
 };
