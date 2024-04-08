@@ -2,17 +2,51 @@
 #include "MCAL/RCC/RCC.h"
 #include "HAL/LED/LED.h"
 #include "HAL/SW/SW.h"
+#include "HAL/LCD/LCD.h"
+
+#include "MCAL/NVIC/NVIC.h"
+#include "MCAL/UART/UART.h"
+#include "MCAL/GPIO/GPIO.h"
+ 
 #include "OS/Sched.h"
 
 
-int main (void)
+int main(void)
 {
-   
+  
     RCC_EnablePeripheralClock(GPIOA_ID);
     RCC_EnablePeripheralClock(GPIOB_ID);
+    RCC_EnablePeripheralClock(GPIOC_ID);
+
+     RCC_EnablePeripheralClock(USART1_ID);
 
     LED_Init();
     SW_Init();
+    LCD_Init();
+    UART_Init(UART_1);
+
+/*Configure Tx Pin*/
+GPIO_PinConfig_t pin0 ={
+                        .Port=GPIO_PORTA,
+                        .Pin=GPIO_PIN9,
+                        .Mode=GPIO_MODE_AF_PP,
+                        .Speed=GPOI_SPEED_HIGH
+                        };
+GPIO_Init(&pin0);
+
+/*Configure Rx Pin*/
+GPIO_PinConfig_t pin1 ={
+                        .Port=GPIO_PORTA,
+                        .Pin=GPIO_PIN10,
+                        .Mode=GPIO_MODE_AF_PP,
+                        .Speed=GPOI_SPEED_HIGH
+                        };
+GPIO_Init(&pin1);
+GPIO_ConfAltrFun(GPIO_PORTA,GPIO_PIN9,AF7);
+GPIO_ConfAltrFun(GPIO_PORTA,GPIO_PIN10,AF7);
+
+
+
 
     Sched_Init();
     Sched_Start();
